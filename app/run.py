@@ -67,7 +67,7 @@ def index():
 
     #second graph
     y = [(df.positive==0).sum()/len(df),(df.positive==1).sum()/len(df)]
-    x = ['0', '1']
+    x = ['Negative', 'Positive']
 
     # second graph
     # category_counts = df.groupby('message').count()
@@ -109,7 +109,7 @@ def index():
                     'title': "Proportion"
                 },
                 'xaxis': {
-                    'title': "Positive vs. Negative"
+                    'title': "Sentiment"
                 }
             }
         }

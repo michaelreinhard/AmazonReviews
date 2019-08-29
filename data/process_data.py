@@ -26,6 +26,13 @@ def load_data(food_reviews_filepath):
         df: a pandas DataFrame
         )
     '''
+    
+    # import zipfile
+    # url = 'https://www.kaggle.com/snap/amazon-fine-food-reviews/downloads/amazon-fine-food-reviews.zip/2'
+
+    # with zipfile.ZipFile(url, 'r') as zip_ref:
+    #     zip_ref.extractall('data')
+
     df = pd.read_csv(food_reviews_filepath)
     
     #combine all the text into one variable

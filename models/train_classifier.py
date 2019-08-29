@@ -126,11 +126,12 @@ def build_model():
         # ('tfidf', TfidfTransformer(use_idf=True)),
         # ('clf', MultiOutputClassifier(RandomForestClassifier(n_estimators=250,\
             # max_features='log2')))
-        ('tfidf', TfidfVectorizer(max_features=400, ngram_range=(1,3), max_df=0.5)), 
-        ('reduce_dim', TruncatedSVD(n_components=140)), 
-        ('clf', SVC(probability=True, gamma=0.0001, C=1000))
+        ('tfidf', TfidfVectorizer(min_df=0.001, max_features=1200, ngram_range=(1,2), max_df=0.7)), 
+        ('reduce_dim', TruncatedSVD(n_components=130)), 
+        ('clf', SVC(probability=True, gamma=0.001, C=10000))
         
     ])
+
     
     return pipeline 
     
@@ -191,7 +192,7 @@ def main():
         print('Please provide the filepath of the disaster messages database '\
               'as the first argument and the filepath of the pickle file to '\
               'save the model to as the second argument. \n\nExample: python '\
-              'train_classifier.py ../data/DisasterResponse.db classifier.pkl')
+              'models/train_classifier.py ../data/DisasterResponse.db classifier.pkl')
 
 
 if __name__ == '__main__':
