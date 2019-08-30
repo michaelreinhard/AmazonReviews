@@ -15,7 +15,7 @@ python data/process_data.py data/amazon-fine-food-reviews/Reviews.csv data/Revie
 
 Then, still from inside the AmazonReviews directory, run the 'train_classifier.py' program like this: 
 
-python models/train_classifier.py ../data/DisasterResponse.db models/classifier.pkl 
+python models/train_classifier.py data/DisasterResponse.db models/classifier.pkl 
 
 Finally, run the application:
 
