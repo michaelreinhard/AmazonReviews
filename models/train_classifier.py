@@ -89,29 +89,6 @@ def load_data(database_filepath):
     return X, y
     
 
-
-# def tokenize(text):
-#     '''
-#     input: (
-#         text: raw text data
-#             )
-#     output: (
-#         returns cleaned tokens in list 
-#             )
-#     Function normalizes, tokenizes, and lemmatizes the text and
-#     removes stopwords.
-#     '''
-#     stop_words = stopwords.words("english")
-#     lemmatizer = WordNetLemmatizer()
-#     # normalize case and remove punctuation
-#     text = re.sub(r"[^a-zA-Z0-9]", " ", text.lower())
-#     # tokenize text
-#     tokens = word_tokenize(text)
-#     # lemmatize andremove stop words
-#     tokens = [lemmatizer.lemmatize(word) for word in tokens if word not in stop_words]
-    
-#     return tokens
-
 def build_model():
     '''
     Searches via GridSearch for the best model.
@@ -126,9 +103,9 @@ def build_model():
         # ('tfidf', TfidfTransformer(use_idf=True)),
         # ('clf', MultiOutputClassifier(RandomForestClassifier(n_estimators=250,\
             # max_features='log2')))
-        ('tfidf', TfidfVectorizer(min_df=0.001, max_features=1200, ngram_range=(1,2), max_df=0.7)), 
-        ('reduce_dim', TruncatedSVD(n_components=130)), 
-        ('clf', SVC(probability=True, gamma=0.001, C=10000))
+        ('tfidf', TfidfVectorizer(min_df=0.001, max_features=1300, ngram_range=(1,2), max_df=0.5)), 
+        ('reduce_dim', TruncatedSVD(n_components=200)), 
+        ('clf', SVC(probability=True, gamma=0.1, C=100))
         
     ])
 
@@ -150,9 +127,7 @@ def evaluate_model(model, X_test, y_test):
         
     '''
     y_pred = model.predict(X_test)
-    # for i, label in enumerate(category_names):
-    #     print(label)
-    #     print(confusion_matrix(y_pred[:,i] ,y_test.values[:,i]))
+    
     print(accuracy_score(y_test, y_pred))
 
 
